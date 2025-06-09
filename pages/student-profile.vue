@@ -1,76 +1,71 @@
 <template>
-  <div class="max-w-2xl mx-auto px-4 py-8">
+  <div class="max-w-2xl mx-auto px-4 py-8 space-y-6">
     <SectionCard title="En quelle classe es-tu ?">
-      <div class="space-x-2">
-        <UButton
+      <div class="flex space-x-2 mb-4">
+        <button
           v-for="c in classes"
           :key="c"
-          :label="c"
-          :variant="selectedClass === c ? 'solid' : 'ghost'"
-          @click.stop="selectedClass = c"
-        />
-      </div>
-      <hr class="my-4" />
-      <p class="font-medium mb-2">Type de bac</p>
-      <div class="space-x-2">
-        <UButton
-          v-for="t in bacTypes"
-          :key="t"
-          :label="t"
-          :variant="selectedBacType === t ? 'solid' : 'ghost'"
-          @click.stop="selectedBacType = t"
-        />
+          @click="selectedClass = c"
+          :class="pillClass(selectedClass === c)"
+        >
+          {{ c }}
+        </button>
       </div>
 
-      <UButton
-        class="mt-6 w-full"
-        variant="outline"
+      <p class="font-medium mb-2">Type de bac</p>
+      <div class="flex space-x-2 mb-4">
+        <button
+          v-for="t in bacTypes"
+          :key="t"
+          @click="selectedBacType = t"
+          :class="pillClass(selectedBacType === t)"
+        >
+          {{ t }}
+        </button>
+      </div>
+
+      <button
+        class="mt-4 w-full px-4 py-2 border rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed bg-white hover:bg-gray-50"
         :disabled="!selectedClass || !selectedBacType"
-        @click.stop="confirm"
+        @click="confirm"
       >
         Confirmer
-      </UButton>
+      </button>
     </SectionCard>
 
     <SectionCard title="Spécialités">
-      <UTextarea
-        placeholder="Ex. : Maths, Physique-Chimie, NSI…"
-        v-model="specialites"
-      />
+      <UInput v-model="specialites" placeholder="À compléter" class="w-full" />
     </SectionCard>
 
     <SectionCard title="Notes">
-      <p class="text-sm text-gray-600 mb-3">
-        Saisis tes moyennes par matière :
-      </p>
       <div v-for="(note, i) in notes" :key="i" class="flex space-x-2 mb-2">
-        <UInput placeholder="Matière" v-model="note.subject" class="flex-1" />
+        <UInput v-model="note.subject" placeholder="Matière" class="flex-1" />
         <UInput
-          placeholder="Moyenne"
           v-model="note.mark"
+          placeholder="Moyenne"
           type="number"
-          min="0"
-          max="20"
+          :min="0"
+          :max="20"
           class="w-24"
         />
       </div>
-      <UButton
-        variant="ghost"
-        @click.stop="notes.push({ subject: '', mark: '' })"
+      <button
+        class="text-blue-600 hover:underline text-sm"
+        @click="notes.push({ subject: '', mark: '' })"
       >
         + Ajouter une matière
-      </UButton>
+      </button>
     </SectionCard>
 
     <SectionCard title="Résultats au bac">
       <div class="space-y-3">
-        <UInput label="Mention (si connue)" v-model="bacResult.mention" />
+        <UInput v-model="bacResult.mention" label="Mention (si connue)" />
         <UInput
+          v-model="bacResult.average"
           label="Moyenne générale"
           type="number"
-          v-model="bacResult.average"
-          min="0"
-          max="20"
+          :min="0"
+          :max="20"
         />
       </div>
     </SectionCard>
@@ -78,25 +73,45 @@
 </template>
 
 <script setup lang="ts">
-import SectionCard from "~/components/SectionCard.vue";
 import { ref } from "vue";
+import SectionCard from "~/components/SectionCard.vue";
+import UInput from "~/components/UInput.vue";
 
 const classes = ["Seconde", "Première", "Terminale"];
 const bacTypes = ["Général", "Technologique", "Professionnel"];
-const selectedClass = ref("");
-const selectedBacType = ref("");
-function confirm() {
-  console.log("Classe", selectedClass.value, "Bac", selectedBacType.value);
-}
 
-const specialites = ref("");
-
+const selectedClass = ref<string>("");
+const selectedBacType = ref<string>("");
+const specialites = ref<string>("");
 const notes = ref<{ subject: string; mark: string | number }[]>([
   { subject: "", mark: "" },
 ]);
-
 const bacResult = ref<{ mention: string; average: string | number }>({
   mention: "",
   average: "",
 });
+
+function confirm() {
+  console.log(
+    "Classe",
+    selectedClass.value,
+    "Bac",
+    selectedBacType.value,
+    "Spécialités",
+    specialites.value,
+    "Notes",
+    notes.value,
+    "Résultat bac",
+    bacResult.value,
+  );
+}
+
+function pillClass(selected: boolean) {
+  return [
+    "px-4 py-1 rounded-full cursor-pointer select-none",
+    selected
+      ? "bg-blue-600 text-white"
+      : "bg-gray-100 text-gray-800 hover:bg-gray-200",
+  ];
+}
 </script>
