@@ -1,5 +1,13 @@
 <template>
   <div class="max-w-2xl mx-auto px-4 py-8 space-y-6">
+    <div class="w-full">
+      <SchoolHeader
+        name="Lycée Gaston Berger"
+        city="Lille"
+        type="Lycée Public"
+      />
+    </div>
+
     <SectionCard title="En quelle classe es-tu ?">
       <div class="flex space-x-2 mb-4">
         <button
@@ -74,6 +82,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import SchoolHeader from "~/components/SchoolHeader.vue";
 import SectionCard from "~/components/SectionCard.vue";
 import UInput from "~/components/UInput.vue";
 
