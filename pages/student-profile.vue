@@ -110,7 +110,7 @@ function pillClass(selected: boolean) {
   return [
     "px-4 py-1 rounded-full cursor-pointer select-none",
     selected
-      ? "bg-blue-600 text-white"
+      ? "bg-black text-white"
       : "bg-gray-100 text-gray-800 hover:bg-gray-200",
   ];
 }

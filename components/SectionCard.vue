@@ -6,7 +6,7 @@
         ? 'bg-white shadow-lg'
         : 'bg-gray-50 hover:bg-gray-100 cursor-pointer'
     "
-    @click="toggle"
+    @click="open || toggle()"
   >
     <div class="flex items-center justify-between">
       <h2 class="text-lg font-semibold">
@@ -31,7 +31,7 @@
 
       <button
         v-if="open"
-        @click.stop="toggle"
+        @click.stop="toggle()"
         class="text-gray-500 hover:text-gray-700"
         aria-label="Fermer"
       >
