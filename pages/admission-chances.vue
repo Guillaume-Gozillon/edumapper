@@ -9,7 +9,7 @@ const goToProfile = () => {
 
 const formations = [
   {
-    school: "SKEMA Business School",
+    school: "SKEMA",
     city: "Lille",
     program: "BBA – Global Management",
     score: 92,
@@ -49,9 +49,7 @@ const formations = [
 
 <template>
   <div class="max-w-3xl mx-auto px-4 py-8 space-y-6">
-    <h2 class="text-3xl font-semibold">
-      Tes chances d’admission aux formations
-    </h2>
+    <h2 class="text-3xl font">Tes chances d’admission aux formations</h2>
 
     <p class="text-gray-700 leading-relaxed">
       Cette estimation provient de calculs rigoureux fondés sur les

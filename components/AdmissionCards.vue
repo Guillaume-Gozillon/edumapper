@@ -3,13 +3,13 @@
     <div
       v-for="(item, idx) in items"
       :key="idx"
-      class="bg-white rounded-xl shadow overflow-hidden"
+      class="bg-white rounded-2xl shadow overflow-hidden"
     >
       <header class="bg-gray-50 px-4 pt-3 pb-5">
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center text-sm text-gray-600">
-            <span class="font-semibold">{{ item.school }}</span>
-            <span class="mx-2 text-gray-400 select-none">•</span>
+            <span class="font">{{ item.school }}</span>
+            <span class="mx-2 text-gray-400 select-none">|</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-4 h-4 text-gray-400 mr-1"
@@ -39,16 +39,14 @@
         </h3>
       </header>
 
-      <div class="p-5">
+      <div class="px-5 pt-3 pb-4">
         <!-- progress bar -->
         <section>
-          <div
-            class="flex items-center justify-between text-sm font-medium mb-2"
-          >
+          <div class="flex items-center justify-between font-medium mb-4">
             <span>Mes chances</span>
             <span
               :class="[
-                'px-2 py-0.5 rounded-full text-xs uppercase tracking-wide flex items-center gap-1',
+                'px-2 py-0.5 rounded-full text-xs   tracking-wide flex items-center gap-1',
                 labelBg(item.score),
               ]"
             >
@@ -60,11 +58,11 @@
             </span>
           </div>
 
-          <div class="flex space-x-1 mb-4">
+          <div class="flex space-x-2 mb-4">
             <div
               v-for="n in 5"
               :key="n"
-              class="flex-1 h-1.5 rounded-full"
+              class="flex-1 h-3 rounded-full"
               :class="
                 n <= filledSegments(item.score)
                   ? barBg(item.score)
@@ -159,17 +157,17 @@ const label = (score: number) => {
 };
 
 const labelBg = (score: number) => {
-  if (score >= 80) return "bg-emerald-100 text-emerald-700";
-  if (score >= 60) return "bg-blue-100 text-blue-700";
-  if (score >= 40) return "bg-fuchsia-100 text-fuchsia-700";
-  return "bg-amber-100 text-amber-700";
+  if (score >= 80) return "bg-emerald-100 text-emerald-400";
+  if (score >= 60) return "bg-blue-100 text-blue-400";
+  if (score >= 40) return "bg-fuchsia-100 text-fuchsia-400";
+  return "bg-amber-100 text-amber-400";
 };
 
 const barBg = (score: number) => {
-  if (score >= 80) return "bg-emerald-500";
-  if (score >= 60) return "bg-blue-500";
-  if (score >= 40) return "bg-fuchsia-500";
-  return "bg-amber-500";
+  if (score >= 80) return "bg-emerald-400";
+  if (score >= 60) return "bg-blue-400";
+  if (score >= 40) return "bg-fuchsia-400";
+  return "bg-amber-400";
 };
 
 const starColor = (score: number) => {
