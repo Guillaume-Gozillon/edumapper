@@ -58,7 +58,7 @@ const formations = [
       la décision d’admission de l’établissement.
     </p>
 
-    <button class="btn flex items-center" @click="goToProfile">
+    <button class="btn flex items-center cursor-pointer" @click="goToProfile">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5 mr-2"
