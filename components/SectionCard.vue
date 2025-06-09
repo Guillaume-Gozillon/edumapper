@@ -9,16 +9,14 @@
     @click="open || toggle()"
   >
     <div class="flex items-center justify-between">
-      <h2 class="text-lg font-semibold">
-        {{ title }}
-      </h2>
+      <h2 class="text-lg font-semibold">{{ title }}</h2>
 
       <svg
         v-if="!open"
         xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5 text-gray-500"
-        fill="none"
         viewBox="0 0 24 24"
+        fill="none"
         stroke="currentColor"
       >
         <path
@@ -61,16 +59,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const props = defineProps<{
-  title: string;
+const props = defineProps<{ title: string }>();
+
+const emit = defineEmits<{
+  (e: "opened"): void;
 }>();
 
 const open = ref(false);
+
 function toggle() {
   open.value = !open.value;
 }
+
+watch(open, (val) => {
+  if (val) emit("opened");
+});
 </script>
 
 <style scoped>
