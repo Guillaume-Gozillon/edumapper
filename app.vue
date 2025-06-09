@@ -1,5 +1,7 @@
 <template>
-  <NuxtPage />
+  <div class="min-h-screen">
+    <NuxtPage />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -13,8 +15,12 @@ useHead({
 });
 </script>
 
-<style>
+<style global>
 html {
   font-family: "DM Sans", sans-serif;
+}
+
+body {
+  background-color: #f7f3f0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-2xl mx-auto px-4 py-8 space-y-6">
+  <div class="max-w-3xl mx-auto px-4 py-8 space-y-6">
     <div class="w-full">
       <SchoolHeader
         name="Lycée Gaston Berger"
@@ -33,7 +33,7 @@
       </div>
 
       <button
-        class="mt-4 w-full px-4 py-2 border rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed bg-white hover:bg-gray-50"
+        class="mt-4 w-full px-4 py-2 border rounded-full font-medium disabled:opacity-50 disabled:cursor-not-allowed bg-white hover:bg-gray-50"
         :disabled="!selectedClass || !selectedBacType"
         @click="confirm"
       >
