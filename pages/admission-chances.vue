@@ -1,4 +1,3 @@
-
 <template>
   <div class="p-8">
     <h1 class="text-xl font-bold mb-4">Admission Chances</h1>
@@ -7,10 +6,10 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
+const router = useRouter();
 const goToProfile = () => {
-  router.push('/student-profile')
-}
+  router.push("/student-profile");
+};
 </script>
 
 <style scoped>
